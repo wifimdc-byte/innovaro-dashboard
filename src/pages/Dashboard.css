@@ -1,0 +1,37 @@
+.dashboard{
+
+    padding:25px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.grid-charts{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-top:25px;
+
+}
+
+@media (max-width:1100px){
+
+    .grid-charts{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

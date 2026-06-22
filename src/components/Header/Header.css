@@ -1,0 +1,189 @@
+.header{
+
+    background:#1565C0;
+
+    color:#FFF;
+
+    padding:20px 30px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.header-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.header-info{
+
+    text-align:right;
+
+}
+
+.header-info span{
+
+    display:block;
+
+    font-size:13px;
+
+    opacity:.8;
+
+}
+
+.header-info strong{
+
+    font-size:18px;
+
+}
+
+.header-filtros{
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.campo{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.campo label{
+
+    font-size:13px;
+
+    margin-bottom:6px;
+
+    font-weight:600;
+
+}
+
+.campo input{
+
+    width:180px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:0 12px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.header-filtros button{
+
+    height:40px;
+
+    padding:0 24px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#43A047;
+
+    color:#FFF;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.header-filtros button:hover{
+
+    background:#2E7D32;
+
+}
+
+.botoes-header{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:flex-end;
+
+}
+
+.botoes-header button{
+
+    height:42px;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:0 18px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.botoes-header button:first-child{
+
+    background:#2E7D32;
+
+    color:white;
+
+}
+
+.botoes-header button:first-child:hover{
+
+    background:#1B5E20;
+
+}
+
+.btn-fullscreen{
+
+    background:#1565C0;
+
+    color:white;
+
+}
+
+.btn-fullscreen:hover{
+
+    background:#0D47A1;
+
+}

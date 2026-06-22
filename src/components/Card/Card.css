@@ -1,0 +1,103 @@
+.card{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:22px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+    transition:.2s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+    color:#666;
+
+}
+
+.card h1{
+
+    font-size:36px;
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+.card small{
+
+    color:#888;
+
+}
+
+.icone{
+
+    font-size:28px;
+
+}
+
+/* Crescimento */
+
+.card-crescimento{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.card-crescimento small{
+
+    margin-left:8px;
+
+    font-size:12px;
+
+    color:#777;
+
+    font-weight:400;
+
+}
+
+.positivo{
+
+    color:#2E7D32;
+
+}
+
+.negativo{
+
+    color:#D32F2F;
+
+}
+
+.neutro{
+
+    color:#757575;
+
+}
