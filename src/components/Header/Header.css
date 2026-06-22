@@ -187,3 +187,33 @@
     background:#0D47A1;
 
 }
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+}
+
+.logo-casas{
+
+    height:55px;
+    width:auto;
+
+}
+
+.logo-melhor{
+
+    height:48px;
+    width:auto;
+
+}
+
+.divisor{
+
+    width:1px;
+    height:42px;
+    background:rgba(255,255,255,.35);
+
+}

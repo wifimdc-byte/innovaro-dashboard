@@ -25,7 +25,7 @@ export default function Login() {
 
             localStorage.setItem("token", data.token);
             localStorage.setItem("usuario", JSON.stringify(data.usuario));
-            
+
             window.location.reload();
 
         } catch {
@@ -45,22 +45,52 @@ export default function Login() {
                 onSubmit={entrar}
             >
 
-                <h1>🏠 Casas da Mamãe BI</h1>
+                <div className="login-logo">
+
+                    <img
+                        src="/logo-casas.png"
+                        alt="Casas da Mamãe"
+                        className="login-logo-casas"
+                    />
+
+                    <div className="login-divisor"></div>
+
+                    <img
+                        src="/logo-melhor.png"
+                        alt="Melhor das Casas"
+                        className="login-logo-melhor"
+                    />
+
+                </div>
+
+                <h2>Business Intelligence</h2>
 
                 <input
                     placeholder="Usuário"
                     value={usuario}
-                    onChange={(e)=>setUsuario(e.target.value)}
+                    onChange={(e) => setUsuario(e.target.value)}
                 />
 
                 <input
                     type="password"
                     placeholder="Senha"
                     value={senha}
-                    onChange={(e)=>setSenha(e.target.value)}
+                    onChange={(e) => setSenha(e.target.value)}
                 />
 
-                {erro && <span>{erro}</span>}
+                {
+
+                    erro && (
+
+                        <span className="erro">
+
+                            {erro}
+
+                        </span>
+
+                    )
+
+                }
 
                 <button>
 

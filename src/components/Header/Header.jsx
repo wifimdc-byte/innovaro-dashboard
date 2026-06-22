@@ -61,7 +61,19 @@ export default function Header() {
 
                 <div className="logo">
 
-                    🏠 Casas da Mamãe Analytics
+                    <img
+                        src="/logo-casas.png"
+                        alt="Casas da Mamãe"
+                        className="logo-casas"
+                    />
+
+                    <div className="divisor"></div>
+
+                    <img
+                        src="/logo-melhor.png"
+                        alt="Melhor das Casas"
+                        className="logo-melhor"
+                    />
 
                 </div>
 
@@ -92,7 +104,7 @@ export default function Header() {
                     <input
                         type="date"
                         value={inicio}
-                        onChange={(e)=>setInicio(e.target.value)}
+                        onChange={(e) => setInicio(e.target.value)}
                     />
 
                 </div>
@@ -104,7 +116,7 @@ export default function Header() {
                     <input
                         type="date"
                         value={fim}
-                        onChange={(e)=>setFim(e.target.value)}
+                        onChange={(e) => setFim(e.target.value)}
                     />
 
                 </div>
@@ -115,12 +127,12 @@ export default function Header() {
 
                     <select
                         value={loja}
-                        onChange={(e)=>setLoja(e.target.value)}
+                        onChange={(e) => setLoja(e.target.value)}
                     >
 
                         {
 
-                            lojas.map((item)=>(
+                            lojas.map((item) => (
 
                                 <option
                                     key={item.id}
@@ -147,17 +159,22 @@ export default function Header() {
 
                     </button>
 
-            {    
-                ehAdmin && (    
-                    <button onClick={abrirUsuarios}>
+                    {
 
-                        <FaUsers />
+                        ehAdmin && (
 
-                        &nbsp;Usuários
+                            <button onClick={abrirUsuarios}>
 
-                    </button>
-                )    
-            }
+                                <FaUsers />
+
+                                &nbsp;Usuários
+
+                            </button>
+
+                        )
+
+                    }
+
                     <button
                         className="btn-fullscreen"
                         onClick={telaCheia}
