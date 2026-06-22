@@ -10,49 +10,15 @@ export default function UsuariosModal({ aberto, fechar }) {
     const [senha, setSenha] = useState("");
     const [nivel, setNivel] = useState("CONSULTA");
 
+    const [salvando, setSalvando] = useState(false);
+
     async function carregar() {
 
-        const token = localStorage.getItem("token");
+        try {
 
-        const { data } = await api.get("/usuarios", {
+            const token = localStorage.getItem("token");
 
-            headers: {
-
-                Authorization: `Bearer ${token}`
-
-            }
-
-        });
-
-        setUsuarios(data);
-
-    }
-
-    async function salvar() {
-
-        if (!usuario || !senha) {
-
-            alert("Informe usuário e senha.");
-
-            return;
-
-        }
-
-        const token = localStorage.getItem("token");
-
-        await api.post(
-
-            "/usuarios",
-
-            {
-
-                usuario,
-                senha,
-                nivel
-
-            },
-
-            {
+            const { data } = await api.get("/usuarios", {
 
                 headers: {
 
@@ -60,35 +26,125 @@ export default function UsuariosModal({ aberto, fechar }) {
 
                 }
 
-            }
+            });
 
-        );
+            setUsuarios(data);
 
-        setUsuario("");
-        setSenha("");
-        setNivel("CONSULTA");
+        } catch (erro) {
 
-        carregar();
+            console.error(erro);
+
+            alert("Erro ao carregar usuários.");
+
+        }
+
+    }
+
+    async function salvar() {
+
+        if (!usuario.trim() || !senha.trim()) {
+
+            alert("Informe usuário e senha.");
+
+            return;
+
+        }
+
+        try {
+
+            setSalvando(true);
+
+            const token = localStorage.getItem("token");
+
+            await api.post(
+
+                "/usuarios",
+
+                {
+
+                    usuario,
+                    senha,
+                    nivel
+
+                },
+
+                {
+
+                    headers: {
+
+                        Authorization: `Bearer ${token}`
+
+                    }
+
+                }
+
+            );
+
+            setUsuario("");
+            setSenha("");
+            setNivel("CONSULTA");
+
+            await carregar();
+
+            alert("Usuário criado com sucesso.");
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            alert(
+
+                erro.response?.data?.erro ||
+
+                "Erro ao criar usuário."
+
+            );
+
+        } finally {
+
+            setSalvando(false);
+
+        }
 
     }
 
     async function excluir(id) {
 
-        if (!window.confirm("Excluir usuário?")) return;
+        if (!window.confirm("Deseja realmente excluir este usuário?")) {
 
-        const token = localStorage.getItem("token");
+            return;
 
-        await api.delete(`/usuarios/${id}`, {
+        }
 
-            headers: {
+        try {
 
-                Authorization: `Bearer ${token}`
+            const token = localStorage.getItem("token");
 
-            }
+            await api.delete(
 
-        });
+                `/usuarios/${id}`,
 
-        carregar();
+                {
+
+                    headers: {
+
+                        Authorization: `Bearer ${token}`
+
+                    }
+
+                }
+
+            );
+
+            await carregar();
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            alert("Erro ao excluir usuário.");
+
+        }
 
     }
 
@@ -125,20 +181,33 @@ export default function UsuariosModal({ aberto, fechar }) {
                 <div className="novo-usuario">
 
                     <input
+
                         placeholder="Usuário"
+
                         value={usuario}
-                        onChange={(e)=>setUsuario(e.target.value)}
+
+                        onChange={(e) => setUsuario(e.target.value)}
+
                     />
 
                     <input
+
+                        type="password"
+
                         placeholder="Senha"
+
                         value={senha}
-                        onChange={(e)=>setSenha(e.target.value)}
+
+                        onChange={(e) => setSenha(e.target.value)}
+
                     />
 
                     <select
+
                         value={nivel}
-                        onChange={(e)=>setNivel(e.target.value)}
+
+                        onChange={(e) => setNivel(e.target.value)}
+
                     >
 
                         <option value="ADMIN">
@@ -155,9 +224,23 @@ export default function UsuariosModal({ aberto, fechar }) {
 
                     </select>
 
-                    <button onClick={salvar}>
+                    <button
 
-                        ➕ Criar
+                        onClick={salvar}
+
+                        disabled={salvando}
+
+                    >
+
+                        {
+
+                            salvando
+
+                                ? "Salvando..."
+
+                                : "➕ Criar"
+
+                        }
 
                     </button>
 
@@ -187,7 +270,7 @@ export default function UsuariosModal({ aberto, fechar }) {
 
                         {
 
-                            usuarios.map((u)=>(
+                            usuarios.map((u) => (
 
                                 <tr key={u.id}>
 
@@ -214,7 +297,9 @@ export default function UsuariosModal({ aberto, fechar }) {
                                     <td>
 
                                         <button
-                                            onClick={()=>excluir(u.id)}
+
+                                            onClick={() => excluir(u.id)}
+
                                         >
 
                                             🗑

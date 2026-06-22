@@ -1,15 +1,12 @@
 .usuarios-overlay{
 
     position:fixed;
-
     inset:0;
 
     background:rgba(0,0,0,.45);
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     z-index:99999;
@@ -18,13 +15,19 @@
 
 .usuarios-modal{
 
-    width:900px;
+    width:950px;
+    max-width:95%;
 
-    background:white;
+    max-height:90vh;
+    overflow:auto;
 
-    border-radius:10px;
+    background:#fff;
+
+    border-radius:12px;
 
     padding:25px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
 
 }
 
@@ -36,7 +39,15 @@
 
     align-items:center;
 
-    margin-bottom:20px;
+    margin-bottom:25px;
+
+}
+
+.usuarios-topo h2{
+
+    margin:0;
+
+    color:#1565c0;
 
 }
 
@@ -46,9 +57,97 @@
 
     background:none;
 
+    font-size:24px;
+
     cursor:pointer;
 
-    font-size:22px;
+    transition:.2s;
+
+}
+
+.usuarios-topo button:hover{
+
+    color:red;
+
+}
+
+.novo-usuario{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+}
+
+.novo-usuario input,
+
+.novo-usuario select{
+
+    flex:1;
+
+    min-width:180px;
+
+    height:42px;
+
+    padding:0 12px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+    font-size:15px;
+
+}
+
+.novo-usuario input:focus,
+
+.novo-usuario select:focus{
+
+    outline:none;
+
+    border-color:#1565c0;
+
+}
+
+.novo-usuario button{
+
+    height:42px;
+
+    padding:0 20px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#1565c0;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+.novo-usuario button:hover{
+
+    background:#0d47a1;
+
+}
+
+.novo-usuario button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
 
 }
 
@@ -58,20 +157,76 @@ table{
 
     border-collapse:collapse;
 
+    overflow:hidden;
+
+    border-radius:8px;
+
 }
 
-th,td{
+thead{
 
-    padding:12px;
+    background:#1565c0;
 
-    border-bottom:1px solid #ddd;
+    color:white;
 
 }
 
 th{
 
-    background:#1565c0;
+    padding:14px;
+
+    text-align:left;
+
+    font-size:14px;
+
+}
+
+td{
+
+    padding:12px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    font-size:14px;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#f8f8f8;
+
+}
+
+tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+td button{
+
+    border:none;
+
+    background:#ef5350;
 
     color:white;
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.2s;
+
+}
+
+td button:hover{
+
+    background:#c62828;
 
 }
