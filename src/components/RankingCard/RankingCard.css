@@ -12,7 +12,9 @@
 
     flex-direction:column;
 
-    min-height:450px;
+    transition:.25s;
+
+    overflow:hidden;
 
 }
 
@@ -36,11 +38,9 @@
 
 .ranking-list{
 
-    flex:1;
-    
     overflow-y:auto;
 
-    max-height-y:auto;
+    max-height:360px;
 
     padding-right:5px;
 
@@ -60,6 +60,10 @@
 
     transition:.2s;
 
+    width:100%;
+
+    box-sizing:border-box;
+
 }
 
 .ranking-item:hover{
@@ -70,15 +74,15 @@
 
 .ranking-posicao{
 
-    width:42px;
+    width:36px;
+
+    flex-shrink:0;
 
     text-align:center;
 
     font-weight:bold;
 
     color:#1565C0;
-
-    flex-shrink:0;
 
 }
 
@@ -108,33 +112,33 @@
 
 .ranking-extra{
 
+    margin-top:3px;
+
     font-size:12px;
 
     color:#777;
-
-    margin-top:3px;
 
 }
 
 .ranking-valor{
 
+    flex-shrink:0;
+
+    margin-left:10px;
+
+    text-align:right;
+
     font-weight:bold;
 
     color:#2E7D32;
 
-    text-align:right;
-
-    margin-left:10px;
-
-    flex-shrink:0;
+    white-space:nowrap;
 
 }
 
-/* Scroll */
-
 .ranking-list::-webkit-scrollbar{
 
-    width:7px;
+    width:6px;
 
 }
 
@@ -148,7 +152,7 @@
 
 .ranking-list::-webkit-scrollbar-track{
 
-    background:#f0f0f0;
+    background:#eee;
 
 }
 
@@ -159,8 +163,6 @@
 @media (max-width:992px){
 
     .ranking-card{
-
-        height:420px;
 
         padding:18px;
 
@@ -178,7 +180,7 @@
 
         width:100%;
 
-        min-height:auto;
+        padding:15px;
 
     }
 
@@ -186,13 +188,13 @@
 
         text-align:center;
 
-        font-size:17px;
+        font-size:16px;
 
     }
 
     .ranking-list{
 
-        max-height:320px;
+        max-height:300px;
 
     }
 
@@ -204,15 +206,15 @@
 
     .ranking-posicao{
 
-        width:32px;
+        width:28px;
 
-        font-size:14px;
+        font-size:13px;
 
     }
 
     .ranking-nome{
 
-        font-size:14px;
+        font-size:13px;
 
     }
 
@@ -224,7 +226,7 @@
 
     .ranking-valor{
 
-        font-size:13px;
+        font-size:12px;
 
     }
 
@@ -238,8 +240,6 @@
 
     .ranking-card{
 
-        min-height:340px;
-
         padding:12px;
 
     }
@@ -252,25 +252,25 @@
 
     .ranking-list{
 
-        max-height:280px;
+        max-height:260px;
 
     }
 
     .ranking-posicao{
 
-        width:28px;
+        width:24px;
 
     }
 
     .ranking-nome{
 
-        font-size:13px;
+        font-size:12px;
 
     }
 
     .ranking-valor{
 
-        font-size:12px;
+        font-size:11px;
 
     }
 
