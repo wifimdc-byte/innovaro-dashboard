@@ -5,8 +5,7 @@ import "./UsuariosModal.css";
 export default function UsuariosModal({ aberto, fechar }) {
 
     const [lojas, setLojas] = useState([]);
-    const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
-    const [lojasSelecionadas, setLojasSelecionadas] = useState([]);
+    const [loja, setLoja] = useState("TODAS");
     
     const [usuarios, setUsuarios] = useState([]);
 
@@ -68,7 +67,8 @@ export default function UsuariosModal({ aberto, fechar }) {
 
                     usuario,
                     senha,
-                    nivel
+                    nivel,
+                    loja
 
                 },
 
@@ -87,6 +87,7 @@ export default function UsuariosModal({ aberto, fechar }) {
             setUsuario("");
             setSenha("");
             setNivel("CONSULTA");
+            setLoja("TODAS");
 
             await carregar();
 
@@ -170,83 +171,8 @@ export default function UsuariosModal({ aberto, fechar }) {
 
 }
 
-async function abrirPermissoes(usuario) {
 
-    const token = localStorage.getItem("token");
 
-    const { data } = await api.get(
-
-        `/usuarios/${usuario.id}/lojas`,
-
-        {
-
-            headers: {
-
-                Authorization: `Bearer ${token}`
-
-            }
-
-        }
-
-    );
-
-    setUsuarioSelecionado(usuario);
-
-    setLojasSelecionadas(data);
-
-}
-
-function marcarLoja(id) {
-
-    if(lojasSelecionadas.includes(id)){
-
-        setLojasSelecionadas(
-
-            lojasSelecionadas.filter(x=>x!==id)
-
-        );
-
-    }else{
-
-        setLojasSelecionadas(
-
-            [...lojasSelecionadas,id]
-
-        );
-
-    }
-
-}
-
-async function salvarPermissoes(){
-
-    const token = localStorage.getItem("token");
-
-    await api.put(
-
-        `/usuarios/${usuarioSelecionado.id}/lojas`,
-
-        {
-
-            lojas: lojasSelecionadas
-
-        },
-
-        {
-
-            headers:{
-
-                Authorization:`Bearer ${token}`
-
-            }
-
-        }
-
-    );
-
-    alert("Permissões salvas.");
-
-}
 
     useEffect(() => {
 
@@ -325,25 +251,39 @@ async function salvarPermissoes(){
 
                     </select>
 
-                    <button
+<select
+    value={loja}
+    onChange={(e) => setLoja(e.target.value)}
+>
 
-                        onClick={salvar}
+    {lojas.map((l) => (
 
-                        disabled={salvando}
+        <option
+            key={l.id}
+            value={l.id}
+        >
+            {l.nome}
+        </option>
 
-                    >
+    ))}
 
-                        {
+</select>
+<button
+    onClick={salvar}
+    disabled={salvando}
+>
 
-                            salvando
+    {
 
-                                ? "Salvando..."
+        salvando
 
-                                : "➕ Criar"
+            ? "Salvando..."
 
-                        }
+            : "➕ Criar"
 
-                    </button>
+    }
+
+</button>
 
                 </div>
 
@@ -358,7 +298,8 @@ async function salvarPermissoes(){
                             <th>Usuário</th>
 
                             <th>Nível</th>
-
+                            <th>Loja</th>
+                            
                             <th>Ativo</th>
 
                             <th>Ações</th>
@@ -381,6 +322,8 @@ async function salvarPermissoes(){
 
                                     <td>{u.nivel}</td>
 
+                                    <td>{u.loja}</td>
+
                                     <td>
 
                                         {
@@ -397,15 +340,7 @@ async function salvarPermissoes(){
 
                                     <td>
 
-                                        <button
-
-                                            onClick={() => abrirPermissoes(u)}
-
-                                        >
-
-                                            🏪 Lojas
-
-                                        </button>
+                                      
 
                                         <button
                                            onClick={() => excluir(u.id)}
@@ -430,7 +365,7 @@ async function salvarPermissoes(){
             </div>
 
         </div>
-
+        
     );
-
-}
+}                
+        
