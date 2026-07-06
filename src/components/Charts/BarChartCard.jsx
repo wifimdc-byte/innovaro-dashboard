@@ -87,12 +87,28 @@ export default function BarChartCard({
                     )}
 
                     <Tooltip
-                        formatter={(v) =>
-                            Number(v).toLocaleString("pt-BR", {
-                                style: "currency",
-                                currency: "BRL"
-                            })
-                        }
+                        formatter={(value, name, props) => {
+
+                            const linhas = [
+
+                                Number(value).toLocaleString("pt-BR", {
+                                    style: "currency",
+                                    currency: "BRL"
+                                })
+
+                            ];
+
+                            if (props.payload.percentual !== undefined) {
+
+                                linhas.push(
+                                    `Participação: ${Number(props.payload.percentual).toFixed(2)}%`
+                                );
+
+                            }
+
+                            return [linhas, "Faturamento"];
+
+                        }}
                     />
 
                     <Bar
