@@ -20,6 +20,21 @@ export default function BarChartCard({
 
     const mobile = window.innerWidth <= 768;
 
+    function formatarValor(v) {
+
+        if (valor === "faturamento" || valor === "ticket_medio") {
+
+            return Number(v).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+
+        }
+
+        return Number(v).toLocaleString("pt-BR");
+
+    }
+
     return (
 
         <div className="chart-card">
@@ -48,6 +63,7 @@ export default function BarChartCard({
                     {horizontal ? (
 
                         <>
+
                             <XAxis
                                 type="number"
                                 tick={{ fontSize: mobile ? 10 : 12 }}
@@ -87,26 +103,69 @@ export default function BarChartCard({
                     )}
 
                     <Tooltip
-                        formatter={(value, name, props) => {
+                        content={({ active, payload, label }) => {
 
-                            const linhas = [
+                            if (!active || !payload || payload.length === 0)
+                                return null;
 
-                                Number(value).toLocaleString("pt-BR", {
-                                    style: "currency",
-                                    currency: "BRL"
-                                })
+                            const item = payload[0].payload;
 
-                            ];
+                            return (
 
-                            if (props.payload.percentual !== undefined) {
+                                <div
+                                    style={{
+                                        background: "#fff",
+                                        border: "1px solid #ddd",
+                                        borderRadius: "8px",
+                                        padding: "12px",
+                                        boxShadow: "0 4px 12px rgba(0,0,0,.15)"
+                                    }}
+                                >
 
-                                linhas.push(
-                                    `Participação: ${Number(props.payload.percentual).toFixed(2)}%`
-                                );
+                                    <div
+                                        style={{
+                                            fontWeight: "bold",
+                                            fontSize: "15px",
+                                            marginBottom: "10px"
+                                        }}
+                                    >
+                                        {label}
+                                    </div>
 
-                            }
+                                    <div style={{ marginBottom: "6px" }}>
+                                        <strong>Valor:</strong>{" "}
+                                        {formatarValor(item[valor])}
+                                    </div>
 
-                            return [linhas, "Faturamento"];
+                                    {
+
+                                        item.percentual !== undefined && (
+
+                                            <div style={{ marginBottom: "6px" }}>
+                                                <strong>Participação:</strong>{" "}
+                                                {Number(item.percentual).toFixed(2)}%
+                                            </div>
+
+                                        )
+
+                                    }
+
+                                    {
+
+                                        item.pedidos !== undefined && (
+
+                                            <div>
+                                                <strong>Pedidos:</strong>{" "}
+                                                {item.pedidos}
+                                            </div>
+
+                                        )
+
+                                    }
+
+                                </div>
+
+                            );
 
                         }}
                     />
