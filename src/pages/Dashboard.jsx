@@ -219,10 +219,10 @@ export default function Dashboard() {
             fechar={() => setUsuariosAberto(false)}
         />
 
-        <MetasModal
-    aberto={metasAberto}
-    fechar={() => setMetasAberto(false)}
-/>
+        {/* <MetasModal
+            aberto={metasAberto}
+            fechar={() => setMetasAberto(false)}
+        /> */}
 
         </>
 
