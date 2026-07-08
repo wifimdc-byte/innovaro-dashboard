@@ -1,6 +1,10 @@
 import "./Header.css";
 
-import { FaUsers, FaSignOutAlt } from "react-icons/fa";
+import {
+    FaUsers,
+    FaBullseye,
+    FaSignOutAlt
+} from "react-icons/fa";
 
 import { useDashboard } from "../../context/DashboardContext";
 
@@ -45,6 +49,12 @@ export default function Header() {
     function abrirUsuarios() {
 
         window.dispatchEvent(new Event("abrirUsuarios"));
+
+    }
+
+    function abrirMetas() {
+
+    window.dispatchEvent(new Event("abrirMetas"));
 
     }
 
@@ -193,21 +203,33 @@ export default function Header() {
 
                     </button>
 
-                    {
+{
 
-                        ehAdmin && (
+    ehAdmin && (
 
-                            <button onClick={abrirUsuarios}>
+        <>
 
-                                <FaUsers />
+            <button onClick={abrirUsuarios}>
 
-                                &nbsp;Usuários
+                <FaUsers />
 
-                            </button>
+                &nbsp;Usuários
 
-                        )
+            </button>
 
-                    }
+            <button onClick={abrirMetas}>
+
+                <FaBullseye />
+
+                &nbsp;Metas
+
+            </button>
+
+        </>
+
+    )
+
+}
 
                     <button
                         className="btn-fullscreen"

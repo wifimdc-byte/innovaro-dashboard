@@ -11,6 +11,7 @@ import { useDashboard } from "../context/DashboardContext";
 
 import { useEffect, useState } from "react";
 import UsuariosModal from "../components/UsuariosModal/UsuariosModal";
+import MetasModal from "../components/MetasModal/MetasModal";
 
 import {
     FaMoneyBillWave,
@@ -27,6 +28,8 @@ export default function Dashboard() {
     
     const[usuariosAberto, setUsuariosAberto] = useState(false);
 
+    const [metasAberto, setMetasAberto] = useState(false);
+
     useEffect(() => {
 
     function abrir() {
@@ -34,6 +37,24 @@ export default function Dashboard() {
         setUsuariosAberto(true);
 
     }
+
+    useEffect(() => {
+
+    function abrir() {
+
+        setMetasAberto(true);
+
+    }
+
+    window.addEventListener("abrirMetas", abrir);
+
+    return () => {
+
+        window.removeEventListener("abrirMetas", abrir);
+
+    };
+
+}, []);
 
     window.addEventListener("abrirUsuarios", abrir);
 
@@ -197,6 +218,11 @@ export default function Dashboard() {
             aberto={usuariosAberto}
             fechar={() => setUsuariosAberto(false)}
         />
+
+        <MetasModal
+    aberto={metasAberto}
+    fechar={() => setMetasAberto(false)}
+/>
 
         </>
 
