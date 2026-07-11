@@ -65,6 +65,16 @@ export default function Header() {
 
     }
 
+    function abrirMetasVendedores() {
+
+    window.dispatchEvent(
+
+        new Event("abrirMetasVendedores")
+
+    );
+
+}
+
     function abrirMetas() {
 
     window.dispatchEvent(new Event("abrirMetas"));
@@ -239,6 +249,20 @@ export default function Header() {
             </button>
 
         </>
+
+    )
+
+}
+
+{
+
+    ehAdmin && (
+
+        <button onClick={abrirMetasVendedores}>
+
+            🎯&nbsp;Metas Vendedores
+
+        </button>
 
     )
 

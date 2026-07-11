@@ -13,6 +13,7 @@ import { useDashboard } from "../context/DashboardContext";
 import { useEffect, useState } from "react";
 import UsuariosModal from "../components/UsuariosModal/UsuariosModal";
 import MetasModal from "../components/MetasModal/MetasModal";
+import MetasVendedoresModal from "../components/MetasVendedoresModal/MetasVendedoresModal";
 
 import {
     FaMoneyBillWave,
@@ -29,7 +30,7 @@ export default function Dashboard() {
 
     const [usuariosAberto, setUsuariosAberto] = useState(false);
     const [metasAberto, setMetasAberto] = useState(false);
-
+    const [metasVendedoresAberto, setMetasVendedoresAberto] = useState(false);
     useEffect(() => {
 
         function abrir() {
@@ -65,6 +66,36 @@ export default function Dashboard() {
         };
 
     }, []);
+
+    useEffect(() => {
+
+    function abrir() {
+
+        setMetasVendedoresAberto(true);
+
+    }
+
+    window.addEventListener(
+
+        "abrirMetasVendedores",
+
+        abrir
+
+    );
+
+    return () => {
+
+        window.removeEventListener(
+
+            "abrirMetasVendedores",
+
+            abrir
+
+        );
+
+    };
+
+}, []);
 
     if (loading || !dados) {
 
@@ -216,6 +247,14 @@ export default function Dashboard() {
                 aberto={metasAberto}
                 fechar={() => setMetasAberto(false)}
             />
+
+            <MetasVendedoresModal
+
+    aberto={metasVendedoresAberto}
+
+    fechar={() => setMetasVendedoresAberto(false)}
+
+/>
 
         </>
 
