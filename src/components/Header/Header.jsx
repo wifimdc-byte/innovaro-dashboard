@@ -33,16 +33,6 @@ export default function Header() {
     } = useDashboard();
 
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-    const [horaAtual, setHoraAtual] = useState(
-    new Date().toLocaleTimeString("pt-BR"));
-    useEffect(() => {
-    const intervalo = setInterval(() => {
-        setHoraAtual(new Date().toLocaleTimeString("pt-BR"));
-    }, 1000);
-
-    return () => clearInterval(intervalo);
-}, []);
-
     const ehAdmin = usuario?.nivel === "ADMIN";
 
     function telaCheia() {
