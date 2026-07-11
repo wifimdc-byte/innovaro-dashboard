@@ -32,7 +32,8 @@ export default function Header() {
 
     } = useDashboard();
 
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const usuarioRaw = localStorage.getItem("usuario");
+    const usuario = usuarioRaw ? JSON.parse(usuarioRaw) : null
     const [horaAtual, setHoraAtual] = useState(
     new Date().toLocaleTimeString("pt-BR"));
     useEffect(() => {
