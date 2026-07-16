@@ -20,15 +20,16 @@
 
 import axios from "axios";
 
+
+
 const api = axios.create({
+    //baseURL: "http://localhost:3000"
     baseURL: "https://innovaro-powerbi-api.onrender.com"
+
 });
 
 // Adiciona automaticamente o Access Token em todas as requisições
 api.interceptors.request.use((config) => {
-
-    
-
     
 
     const token = localStorage.getItem("token");
@@ -70,9 +71,9 @@ api.interceptors.response.use(
                 const refreshToken =
                     localStorage.getItem("refreshToken");
 
-                const resposta = await axios.post(
+                const resposta = await api.post(
 
-                    "https://innovaro-powerbi-api.onrender.com/auth/refresh",
+                    "/auth/refresh",
 
                     {
                         refreshToken
