@@ -1,6 +1,6 @@
 import "./Dashboard.css";
 
-import { useDashboard } from "../context/DashboardContext";
+import { useDashboard } from "../context/dashboardContext";
 import { clearSession } from "../models/session";
 
 import Header from "../components/Header/Header";
