@@ -25,9 +25,11 @@ export function getStoredUser() {
 }
 
 export function saveSession({ accessToken, refreshToken, usuario }) {
-    if (accessToken) {
-        localStorage.setItem(SESSION_KEYS.accessToken, accessToken);
-    }
+    // if (accessToken) {
+    //     localStorage.setItem(SESSION_KEYS.accessToken, accessToken);
+    // }
+
+    setAccessToken(accessToken);
 
     if (refreshToken) {
         localStorage.setItem(SESSION_KEYS.refreshToken, refreshToken);

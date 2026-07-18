@@ -1,4 +1,4 @@
-import { DashboardContext } from "./DashboardContext";
+import { DashboardContext } from "./dashboardContext";
 import { useDashboardController } from "../controllers/useDashboardController";
 
 export default function DashboardProvider({ children }) {
